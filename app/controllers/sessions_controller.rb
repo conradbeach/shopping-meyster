@@ -8,17 +8,17 @@ class SessionsController < ApplicationController
 
     if user
       session[:user_id] = user.id
-      flash[:success] = "You are now logged in."
+      flash[:success] = "Glad to have you back #{user.username}!"
       redirect_to lists_path
     else
-      flash[:error] = "There's something wrong with your login credentials."
+      flash[:error] = "Hmmm... Those credentials don't look valid."
       redirect_to login_path
     end
   end
 
   def destroy
     session[:user_id] = nil
-    flash[:success] = "You are now logged out."
+    flash[:success] = "See you again soon!"
     redirect_to root_path
   end
 end
