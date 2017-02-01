@@ -2,7 +2,7 @@
 
 <% if @user.errors.any? %>
   <% @user.errors.full_messages.each do |message| %>
-    <p><%= message %></p>
+    <%= render "shared/card", message: message, color: "red darken-4" %>
   <% end %>
 <% end %>
 
@@ -14,7 +14,7 @@
   <%= f.password_field :password %>
   <%= f.password_field :password_confirmation %>
 
-  <%= f.submit "Register" %>
+  <%= f.submit "Register", class: "btn waves-effect waves-light" %>
 <% end %>
 
 <p>Already have an account? <%= link_to "Login here.", login_path %></p>
