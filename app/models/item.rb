@@ -1,4 +1,7 @@
 class Item < ActiveRecord::Base
-  has_many :list_items
-  has_many :lists, through: :list_items
+  belongs_to :list
+
+  validates :name, presence: true
+  validates :price, presence: true
+  validates :quantity, presence: true
 end
