@@ -1,8 +1,11 @@
 class ListsController < ApplicationController
   before_action :require_login, only: [:index, :create]
+
   before_action only: [:show, :update, :destroy] do
     require_owner(List, params[:id])
   end
+
+  before_action :_set_list, only: [:show, :update, :destroy]
 
   def index
     @lists = List.where(user: current_user)
@@ -10,7 +13,8 @@ class ListsController < ApplicationController
   end
 
   def show
-    # Display all items associated with the list.
+    @items = @list.items
+    @new_item = Item.new
   end
 
   def create
@@ -28,9 +32,7 @@ class ListsController < ApplicationController
   end
 
   def update
-    list = List.find(params[:id])
-
-    if list.update(_list_params)
+    if @list.update(_list_params)
       flash[:success] = "List updated."
     else
       flash[:error] = "Your list still wants a name."
@@ -41,9 +43,7 @@ class ListsController < ApplicationController
 
   def destroy
     # TODO: Add cofirmation for deletion.
-    list = List.find(params[:id])
-
-    if list.destroy
+    if @list.destroy
       flash[:success] = "Your list has been deleted... Forever... Hope you " \
                         "didn't need that."
     else
@@ -57,5 +57,9 @@ class ListsController < ApplicationController
 
   def _list_params
     params.require(:list).permit(:name)
+  end
+
+  def _set_list
+    @list = List.find(params[:id])
   end
 end

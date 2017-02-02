@@ -1,0 +1,20 @@
+<h1><%= @list.name %></h1>
+
+<%= link_to "<-- Back to Lists", lists_path %>
+
+<%= render "items/form", list: @list, item: @new_item %>
+
+<!-- TODO: Instead of a form at the top of the page, have a plus button on the bottom right that pops up a modal to add. -->
+<ul>
+  <% @items.each do |item| %>
+    <li id="item-<%= item.id %>">
+      <%= item.name %>: <%= item.quantity %>, <%= number_to_currency(item.price) %>, <%= item.completed ? "Done" : "Not Done" %> |
+      <%= link_to (render "shared/icon", name: "delete"), item_path(item), method: :delete, remote: true %> |
+      <%= link_to (render "shared/icon", name: "check"), item_path(item, completed: !item.completed), method: :patch %>
+      <%= render "items/form", list: @list, item: item %>
+    </li>
+  <% end %>
+</ul>
+
+<!-- TODO: Make this total cost fixed to the top of the screen. -->
+<h2>Total Cost: <%= @list.total_cost %></h2>
