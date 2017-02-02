@@ -1,20 +1,24 @@
-<h1><%= @list.name %></h1>
-
-<%= link_to "<-- Back to Lists", lists_path %>
-
-<%= render "items/form", list: @list, item: @new_item %>
+<nav>
+  <div class="nav-wrapper">
+    <div class="col s12">
+      <%= link_to "Lists", lists_path, class: "breadcrumb" %>
+      <span class="breadcrumb"><%= @list.name %></span>
+      <span class="right">Total Cost: <%= number_to_currency(@list.total_cost) %></span>
+    </div>
+  </div>
+</nav>
 
 <!-- TODO: Instead of a form at the top of the page, have a plus button on the bottom right that pops up a modal to add. -->
-<ul>
+<!--       Or maybe, better yet, have a collection member at the bottom that popouts out to the new item form. -->
+<!--       After submission, use JS to reset the submission form for quick entry. -->
+<ul class="collapsible popout" data-collapsible="expandable">
+  <li>
+    <%= render "items/add_item", list: @list, item: @new_item %>
+  </li>
+
   <% @items.each do |item| %>
     <li id="item-<%= item.id %>">
-      <%= item.name %>: <%= item.quantity %>, <%= number_to_currency(item.price) %>, <%= item.completed ? "Done" : "Not Done" %> |
-      <%= link_to (render "shared/icon", name: "delete"), item_path(item), method: :delete, remote: true %> |
-      <%= link_to (render "shared/icon", name: "check"), item_path(item, completed: !item.completed), method: :patch %>
-      <%= render "items/form", list: @list, item: item %>
+      <%= render "items/item", list: @list, item: item %>
     </li>
   <% end %>
 </ul>
-
-<!-- TODO: Make this total cost fixed to the top of the screen. -->
-<h2>Total Cost: <%= @list.total_cost %></h2>

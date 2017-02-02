@@ -1,5 +1,5 @@
 <% flash.each do |name, message| %>
   <% color = get_flash_color(name) %>
 
-  <%= render "shared/card", message: message, color: color %>
+  <%= render "shared/card", content: message, color: color %>
 <% end %>

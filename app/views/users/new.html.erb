@@ -2,7 +2,7 @@
 
 <% if @user.errors.any? %>
   <% @user.errors.full_messages.each do |message| %>
-    <%= render "shared/card", message: message, color: ApplicationHelper::ERROR_COLOR %>
+    <%= render "shared/card", content: message, color: ApplicationHelper::ERROR_COLOR %>
   <% end %>
 <% end %>
 
