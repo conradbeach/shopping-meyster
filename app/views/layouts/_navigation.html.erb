@@ -3,6 +3,7 @@
     <a href="/" class="brand-logo">ShoppingMeyster</a>
     <ul class="right">
       <% if logged_in? %>
+        <li><%= link_to "My Lists", lists_path %></li>
         <li><%= link_to "Log out", logout_path, method: :delete %></li>
       <% else %>
         <li><%= link_to "Log in", login_path %></li>
