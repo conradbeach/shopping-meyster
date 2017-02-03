@@ -22,3 +22,11 @@
     </li>
   <% end %>
 </ul>
+<footer class="page-footer">
+  <div class="container">
+    <div class="row white-text">
+      <span>Total Cost: <%= number_to_currency(@list.total_cost) %></span>
+      <span class="right">Items Remaining: <%= @list.items_remaining %></span>
+    </div>
+  </div>
+</footer>

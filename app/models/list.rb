@@ -7,4 +7,8 @@ class List < ActiveRecord::Base
   def total_cost
     items.reduce(0) { |acc, elem| acc + (elem.price || 0) }
   end
+
+  def items_remaining
+    items.size - items.select(&:completed).size
+  end
 end
