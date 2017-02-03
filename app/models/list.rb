@@ -5,7 +5,8 @@ class List < ActiveRecord::Base
   validates :name, presence: true
 
   def total_cost
-    items.reduce(0) { |acc, elem| acc + (elem.price || 0) }
+    total = items.reduce(0) { |acc, elem| acc + (elem.price || 0) }
+    ActiveSupport::NumberHelper.number_to_currency(total)
   end
 
   def items_remaining

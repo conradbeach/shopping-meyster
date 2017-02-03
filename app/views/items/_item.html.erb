@@ -1,14 +1,25 @@
 <!-- Parameters: list, item -->
 
-<div class="collapsible-header">
-  <%= link_to (render "shared/icon", name: "check"), item_path(item, completed: !item.completed), method: :patch %>
-  <strong><%= item.name %> - </strong>
-  <%= item.quantity %> |
-  <%= number_to_currency(item.price) %>
-  <%= link_to (render "shared/icon", name: "delete"), item_path(item), method: :delete, remote: true, class: "right" %>
-</div>
-<div class="collapsible-body">
-  <span>
-    <%= render "items/form", list: list, item: item %>
-  </span>
-</div>
+<li id="item-<%= item.id %>" class="<%= "completed" if item.completed %>">
+  <div class="collapsible-header">
+    <%= link_to (render "shared/icon", name: "check"),
+                item_path(item, completed: !item.completed, list_id: list.id),
+                method: :patch,
+                remote: true %>
+
+    <strong><%= item.name %> - </strong>
+    <%= item.quantity %> |
+    <%= number_to_currency(item.price) %>
+
+    <%= link_to (render "shared/icon", name: "delete"),
+                item_path(item, list_id: list.id),
+                method: :delete,
+                remote: true,
+                class: "right" %>
+  </div>
+  <div class="collapsible-body">
+    <span>
+      <%= render "items/form", list: list, item: item %>
+    </span>
+  </div>
+</li>

@@ -11,3 +11,9 @@
 .list-items {
   margin-bottom: 10%;
 }
+
+.completed {
+  @extend .grey-text, .text-lighten-2;
+
+  text-decoration: line-through;
+}

@@ -1,12 +1,16 @@
-<div class="collapsible-header">
-  <a class="btn-floating waves-effect waves-light red">
-    <i class="material-icons">add</i>
-  </a>
-  Add Item
-</div>
+<!-- Parameters: list, item -->
 
-<div class="collapsible-body">
-  <span>
-    <%= render "items/form", list: list, item: item %>
-  </span>
-</div>
+<li>
+  <div class="collapsible-header">
+    <a class="btn-floating waves-effect waves-light red">
+      <i class="material-icons">add</i>
+    </a>
+    Add Item
+  </div>
+
+  <div class="collapsible-body">
+    <span>
+      <%= render "items/form", list: list, item: item %>
+    </span>
+  </div>
+</li>

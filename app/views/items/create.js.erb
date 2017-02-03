@@ -1,0 +1,9 @@
+var $list = $(".list-items");
+var item_html = "<%= escape_javascript render('item', list: @list, item: @item) %>";
+
+$list.append(item_html);
+
+$("#new_item")[0].reset();
+
+$("#total-cost").html("<%= @list.total_cost %>");
+$("#items-remaining").html("<%= @list.items_remaining %>");

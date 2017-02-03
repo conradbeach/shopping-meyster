@@ -1,0 +1,11 @@
+var $list_item = $("#item-<%= @item.id %>")
+var item_html = "<%= escape_javascript render('item', list: @list, item: @item) %>"
+
+$list_item.html(item_html)
+
+<% if params.keys.include? "completed" %>
+  $list_item.toggleClass("completed")
+<% end %>
+
+$("#total-cost").html("<%= @list.total_cost %>");
+$("#items-remaining").html("<%= @list.items_remaining %>");

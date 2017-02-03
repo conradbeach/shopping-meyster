@@ -1,32 +1,22 @@
-<nav>
-  <div class="nav-wrapper">
-    <div class="col s12">
-      <%= link_to "Lists", lists_path, class: "breadcrumb" %>
-      <span class="breadcrumb"><%= @list.name %></span>
-      <span class="right">Total Cost: <%= number_to_currency(@list.total_cost) %></span>
-    </div>
-  </div>
-</nav>
+<h1><%= @list.name %></h1>
 
-<!-- TODO: Instead of a form at the top of the page, have a plus button on the bottom right that pops up a modal to add. -->
-<!--       Or maybe, better yet, have a collection member at the bottom that popouts out to the new item form. -->
-<!--       After submission, use JS to reset the submission form for quick entry. -->
-<ul class="collapsible popout" data-collapsible="expandable">
-  <li>
-    <%= render "items/add_item", list: @list, item: @new_item %>
-  </li>
+<ul class="collapsible popout list-items" data-collapsible="expandable">
+  <%= render "items/add_item", list: @list, item: @new_item %>
 
   <% @items.each do |item| %>
-    <li id="item-<%= item.id %>">
-      <%= render "items/item", list: @list, item: item %>
-    </li>
+    <%= render "items/item", list: @list, item: item %>
   <% end %>
 </ul>
+
 <footer class="page-footer">
   <div class="container">
     <div class="row white-text">
-      <span>Total Cost: <%= number_to_currency(@list.total_cost) %></span>
-      <span class="right">Items Remaining: <%= @list.items_remaining %></span>
+      <span>
+        Total Cost: <span id="total-cost"><%= @list.total_cost %></span>
+      </span>
+      <span class="right">
+        Items Left: <span id="items-remaining"><%= @list.items_remaining %></span>
+      </span>
     </div>
   </div>
 </footer>

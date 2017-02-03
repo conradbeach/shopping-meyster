@@ -1,14 +1,20 @@
 <!-- Parmaters: list, item -->
 
-<%= form_for item do |f| %>
+<%= form_for item, remote: true do |f| %>
   <%= f.label :name %>
   <%= f.text_field :name, required: true %>
 
-  <%= f.label :price %>
-  $<%= f.number_field :price, step: 0.01 %>
+  <div class="row">
+    <div class="col s6">
+      <%= f.label :price %>
+      $<%= f.number_field :price, step: 0.01, required: true %>
+    </div>
 
-  <%= f.label :quantity %>
-  <%= f.text_field :quantity %>
+    <div class="col s6">
+      <%= f.label :quantity %>
+      <%= f.text_field :quantity, required: true %>
+    </div>
+  </div>
 
   <%= f.hidden_field :list_id, value: list.id %>
 

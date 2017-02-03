@@ -1,14 +1,11 @@
 <h1>Your Lists</h1>
 
-<ul>
+<ul class="collapsible popout" data-collapsible="expandable">
+  <li>
+    <%= render "add_list", list: @new_list %>
+  </li>
+
   <% @lists.each do |list| %>
-    <li>
-      <%= link_to list.name, list_path(list) %> |
-      <%= link_to (render "shared/icon", name: "delete"), list_path(list), method: :delete %> |
-      <%= render "form", list: list %>
-    </li>
+    <li><%= render "list", list: list %></li>
   <% end %>
 </ul>
-
-<h2>Add List</h2>
-<%= render "form", list: @new_list %>
