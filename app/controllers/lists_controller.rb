@@ -28,7 +28,6 @@ class ListsController < ApplicationController
   end
 
   def destroy
-    # TODO: Add cofirmation for deletion.
     @list.destroy
   end
 
