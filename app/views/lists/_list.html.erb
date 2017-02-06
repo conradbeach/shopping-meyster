@@ -1,6 +1,8 @@
 <!-- Parameters: list -->
 
-<li id="list-<%= list.id %>">
+<% list_id = "list-#{list.id}" %>
+
+<li id="<%= list_id %>">
   <div class="collapsible-header">
     <%= render "shared/icon", name: "toc" %>
     <strong><%= link_to list.name, list_path(list) %></strong>
@@ -21,3 +23,19 @@
     </span>
   </div>
 </li>
+
+<script>
+  // Link to actual list.
+  $("#<%= list_id %>").find("a").not("[data-remote=true]").on("click", function(event) {
+    // TODO: This interferes with turbolinks (I believe) and is really slowing down going to this link.
+    event.stopPropagation();
+  });
+
+  // Delete button.
+  $("#<%= list_id %>").find("a[data-remote=true]").not().on("click", function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+
+    $(this).trigger("click.rails");
+  });
+</script>

@@ -1,6 +1,8 @@
 <!-- Parameters: list, item -->
 
-<li id="item-<%= item.id %>" class="<%= "completed" if item.completed %>">
+<% item_id = "item-#{item.id}" %>
+
+<li id="<%= item_id %>" class="<%= "completed" if item.completed %>">
   <div class="collapsible-header">
     <%= link_to (render "shared/icon", name: "check"),
                 item_path(item, completed: !item.completed, list_id: list.id),
@@ -23,3 +25,13 @@
     </span>
   </div>
 </li>
+
+<script>
+  // Binds to "complete" and "delete" buttons.
+  $("#<%= item_id %>").find("a").on("click", function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+
+    $(this).trigger("click.rails");
+  });
+</script>
