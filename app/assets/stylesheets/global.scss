@@ -1,6 +1,14 @@
 @import 'materialize';
 @import 'materialize/extras/nouislider';
 
+// General
+
+h1 {
+  font-size: 1.8em;
+}
+
+// Footer
+
 .page-footer {
   bottom: 0;
   left: 0;
@@ -8,12 +16,24 @@
   right: 0;
 }
 
-.list-items {
+// List items
+
+#list-items {
   margin-bottom: 10%;
 }
 
-.completed {
+.completed > .collapsible-header {
   @extend .grey-text, .text-lighten-2;
 
   text-decoration: line-through;
+}
+
+// Collapsibles
+
+.collapsible-body {
+  padding: 3%;
+}
+
+.collapsible-header {
+  font-size: 1.25em;
 }
