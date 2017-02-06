@@ -29,14 +29,7 @@ class ListsController < ApplicationController
 
   def destroy
     # TODO: Add cofirmation for deletion.
-    if @list.destroy
-      flash[:success] = "Your list has been deleted... Forever... Hope you " \
-                        "didn't need that."
-    else
-      flash[:error] = "We couldn't delete that list for some odd reason..."
-    end
-
-    redirect_to lists_path
+    @list.destroy
   end
 
   private
