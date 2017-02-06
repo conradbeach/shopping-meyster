@@ -32,13 +32,7 @@ class ListsController < ApplicationController
   end
 
   def update
-    if @list.update(_list_params)
-      flash[:success] = "List updated."
-    else
-      flash[:error] = "Your list still wants a name."
-    end
-
-    redirect_to lists_path
+    @list.update(_list_params)
   end
 
   def destroy
