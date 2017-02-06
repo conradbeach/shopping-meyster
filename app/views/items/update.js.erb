@@ -1,11 +1,6 @@
-var item_id = "#item-<%= @item.id %>"
 var new_item_html = "<%= escape_javascript render('item', list: @list, item: @item) %>"
 
-$(item_id).replaceWith(new_item_html)
-
-<% if params.keys.include? "completed" %>
-  $(item_id).toggleClass("completed", params["completed"]);
-<% end %>
+$("#item-<%= @item.id %>").replaceWith(new_item_html)
 
 $("#total-cost").html("<%= @list.total_cost %>");
-$("#items-remaining").html("<%= @list.items_remaining %>"); // FIXME: This isn't updating when tasks are marked as completed.
+$("#items-remaining").html("<%= @list.items_remaining %>");
