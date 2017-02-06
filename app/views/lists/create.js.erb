@@ -1,0 +1,4 @@
+var new_list_html = "<%= escape_javascript render('list', list: @list) %>";
+
+$("#lists").append(new_list_html);
+$("#new_list")[0].reset();

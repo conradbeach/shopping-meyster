@@ -18,17 +18,9 @@ class ListsController < ApplicationController
   end
 
   def create
-    list = List.new(_list_params)
-    list.user = current_user
-
-    if list.save
-      flash[:success] = "Shazam! List created."
-    else
-      flash[:error] = "Your list should probably have a name. Or you might " \
-                      "make it sad."
-    end
-
-    redirect_to lists_path
+    @list = List.new(_list_params)
+    @list.user = current_user
+    @list.save
   end
 
   def update
