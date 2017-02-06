@@ -1,4 +1,4 @@
-var $list = $(".list-items");
+var $list = $("#list-items");
 var item_html = "<%= escape_javascript render('item', list: @list, item: @item) %>";
 
 $list.append(item_html);
