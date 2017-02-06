@@ -4,10 +4,6 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.create(_item_params.merge(completed: false))
-
-    respond_to do |format|
-      format.js
-    end
   end
 
   def update
@@ -16,18 +12,10 @@ class ItemsController < ApplicationController
     else
       @item.update(_item_params)
     end
-
-    respond_to do |format|
-      format.js
-    end
   end
 
   def destroy
     @item.destroy
-
-    respond_to do |format|
-      format.js
-    end
   end
 
   private
