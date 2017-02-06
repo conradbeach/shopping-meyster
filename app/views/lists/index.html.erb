@@ -1,11 +1,9 @@
 <h1>Your Lists</h1>
 
-<ul class="collapsible popout" data-collapsible="expandable">
-  <li>
-    <%= render "add_list", list: @new_list %>
-  </li>
+<ul id="lists" class="collapsible popout" data-collapsible="expandable">
+  <%= render "add_list", list: @new_list %>
 
   <% @lists.each do |list| %>
-    <li><%= render "list", list: list %></li>
+    <%= render "list", list: list %>
   <% end %>
 </ul>

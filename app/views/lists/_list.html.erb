@@ -1,14 +1,20 @@
 <!-- Parameters: list -->
 
-<div class="collapsible-header">
-  <%= render "shared/icon", name: "toc" %>
-  <strong><%= link_to list.name, list_path(list) %></strong>
-  <span class="right">
-    <%= link_to (render "shared/icon", name: "delete"), list_path(list), method: :delete %>
-  </span>
-</div>
-<div class="collapsible-body">
-  <span>
-    <%= render "form", list: list %>
-  </span>
-</div>
+<li id="list-<%= list.id %>">
+  <div class="collapsible-header">
+    <%= render "shared/icon", name: "toc" %>
+    <strong><%= link_to list.name, list_path(list) %></strong>
+    <span class="right">
+      <%= link_to (render "shared/icon",
+                  name: "delete"),
+                  list_path(list),
+                  method: :delete,
+                  remote: true %>
+    </span>
+  </div>
+  <div class="collapsible-body">
+    <span>
+      <%= render "form", list: list %>
+    </span>
+  </div>
+</li>
